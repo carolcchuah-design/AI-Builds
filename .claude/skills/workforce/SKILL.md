@@ -20,7 +20,7 @@ Carol's AI workforce is orchestrated by **Ava** (`.claude/agents/ava.md`). This 
 - **journey-check**, **qa-check** — content skill gates
 - **monica** — operations & admin (live Gmail + Google Calendar)
 - **lisa** — education & learning
-- **charlie** — client & advisory (controls `pipeline-tracker`, `proposal-drafter`, `presentation-buddy`, `meddpic-deal-clinic`)
+- **declan** — client & advisory (controls `pipeline-tracker`, `proposal-drafter`, `presentation-buddy`, `meddpic-deal-clinic`)
 - **christina** — research
 
 ## A note on Notion
@@ -29,6 +29,6 @@ Notion is **connected** as of this build. Joey has live Notion tools (search/fet
 
 ## Known limitation: nested dispatch
 
-In this environment (Claude Code Remote), a subagent's own `Task` tool does not actually get granted to it at runtime, even when its `.md` frontmatter lists `Task` — confirmed independently with both Ava and Charlie, who each reported having only `Read`/`Write` available when they tried to dispatch to their own team/tools. Practical effect: Ava cannot actually delegate to Joey/Monica/etc. by calling Task herself, and Charlie cannot actually delegate to her four tools that way either.
+In this environment (Claude Code Remote), a subagent's own `Task` tool does not actually get granted to it at runtime, even when its `.md` frontmatter lists `Task` — confirmed independently with both Ava and Declan, who each reported having only `Read`/`Write` available when they tried to dispatch to their own team/tools. Practical effect: Ava cannot actually delegate to Joey/Monica/etc. by calling Task herself, and Declan cannot actually delegate to their four tools that way either.
 
-Until/unless that changes, whoever is running this skill (the top-level session invoking `/workforce`) should do the dispatching directly — call each named agent (`joey`, `journey-check`, `qa-check`, `monica`, `charlie`, `christina`, or Charlie's four tools) as its own Agent/Task call, using Ava's or Charlie's routing logic (in their `.md` files) as the plan to follow, rather than expecting Ava or Charlie to fan out on their own. This has been tested and works reliably — it's one extra layer of manual orchestration, not a blocker. In a standard local Claude Code CLI/desktop session, nested subagent dispatch is a normal supported pattern and this workaround likely isn't needed — worth re-testing there.
+Until/unless that changes, whoever is running this skill (the top-level session invoking `/workforce`) should do the dispatching directly — call each named agent (`joey`, `journey-check`, `qa-check`, `monica`, `declan`, `christina`, or Declan's four tools) as its own Agent/Task call, using Ava's or Declan's routing logic (in their `.md` files) as the plan to follow, rather than expecting Ava or Declan to fan out on their own. This has been tested and works reliably — it's one extra layer of manual orchestration, not a blocker. In a standard local Claude Code CLI/desktop session, nested subagent dispatch is a normal supported pattern and this workaround likely isn't needed — worth re-testing there.

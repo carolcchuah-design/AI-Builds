@@ -11,7 +11,7 @@ Ava orchestrates a team of specialists across content, operations, learning, cli
                               └────────────┬─────────────┘
              ┌───────────────┬─────────────┼─────────────┬───────────────┐
              ▼               ▼             ▼             ▼               ▼
-          Joey            Monica          Lisa         Charlie       Christina
+          Joey            Monica          Lisa         Declan        Christina
      (content, multi-   (ops & admin,  (education &  (client &      (research)
       format, in Carol's  live Gmail +   learning)     advisory)
       voice)              Calendar)
@@ -31,18 +31,18 @@ Ava orchestrates a team of specialists across content, operations, learning, cli
 | `qa-check` | Skill gate — checks voice, claims, formatting, links, length before anything ships |
 | `monica` | Operations & admin — connected to Carol's real Gmail and Google Calendar; confirms before any calendar action visible to others |
 | `lisa` | Education & learning — curates and condenses learning material into actionable takeaways |
-| `charlie` | Client & advisory — reviews client-facing content against what the client actually asked; controls four single-task tools below |
+| `declan` | Client & advisory — reviews client-facing content against what the client actually asked; controls four single-task tools below |
 | `christina` | Research — sources, verifies claims, resolves `[NEEDS SOURCE]` flags |
-| `pipeline-tracker` | *(Charlie's tool)* Deal/account status, stale-deal flags, weekly priorities |
-| `proposal-drafter` | *(Charlie's tool)* Drafts a client proposal from a brief, in `carol-gsd-voice` |
-| `presentation-buddy` | *(Charlie's tool)* Structures presentation narrative and talk tracks (not the visual deck) |
-| `meddpic-deal-clinic` | *(Charlie's tool)* MEDDPIC health check on a specific deal |
+| `pipeline-tracker` | *(Declan's tool)* Deal/account status, stale-deal flags, weekly priorities |
+| `proposal-drafter` | *(Declan's tool)* Drafts a client proposal from a brief, in `carol-gsd-voice` |
+| `presentation-buddy` | *(Declan's tool)* Structures presentation narrative and talk tracks (not the visual deck) |
+| `meddpic-deal-clinic` | *(Declan's tool)* MEDDPIC health check on a specific deal |
 
 ### Running it
 
 From a Claude Code session in this repo, invoke the `workforce` skill (`/workforce`) with any request. It hands off to Ava, who routes to the right specialist(s) and compiles a single result — nothing publishes or sends without Carol's sign-off. You can also address any agent by name directly (e.g. "ask Christina to look into X") without going through Ava.
 
-**Known limitation (Claude Code Remote):** subagents don't actually get their own `Task` tool in this environment, even when their `.md` file lists it — confirmed with both Ava and Charlie. So true self-dispatch (Ava calling Joey, Charlie calling her four tools) doesn't fire on its own here; whoever's running the session should call each specialist directly instead, using Ava's/Charlie's routing logic as the plan. Tested, reliable, just one extra manual layer. Worth re-testing in a standard local Claude Code CLI/desktop session, where nested dispatch is normally supported.
+**Known limitation (Claude Code Remote):** subagents don't actually get their own `Task` tool in this environment, even when their `.md` file lists it — confirmed with both Ava and Declan. So true self-dispatch (Ava calling Joey, Declan calling their four tools) doesn't fire on its own here; whoever's running the session should call each specialist directly instead, using Ava's/Declan's routing logic as the plan. Tested, reliable, just one extra manual layer. Worth re-testing in a standard local Claude Code CLI/desktop session, where nested dispatch is normally supported.
 
 ### Integrations
 
