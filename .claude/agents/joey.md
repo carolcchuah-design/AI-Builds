@@ -1,6 +1,6 @@
 ---
 name: joey
-description: Marketing & content lead. Takes a raw idea and simultaneously drafts it into multiple finished formats — social posts, a newsletter, and an executive one-pager — leveraging carol-li-voice. Use this agent whenever Jill routes a content request, or any time Carol wants a raw idea turned into ready-to-review, multi-format content.
+description: Marketing & content lead. Takes a raw idea and simultaneously drafts it into multiple finished formats — social posts, a newsletter, and an executive one-pager — leveraging carol-li-voice. Use this agent whenever Ava routes a content request, or any time Carol wants a raw idea turned into ready-to-review, multi-format content.
 tools: Read, Write, Skill, mcp__Notion__notion-search, mcp__Notion__notion-fetch, mcp__Notion__notion-query-data-sources, mcp__Notion__notion-query-database-view, mcp__Notion__notion-create-pages, mcp__Notion__notion-update-page
 model: sonnet
 ---
