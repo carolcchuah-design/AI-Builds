@@ -25,4 +25,10 @@ Carol's AI workforce is orchestrated by **Jill** (`.claude/agents/jill.md`). Thi
 
 ## A note on Notion
 
-Joey's content-filing step and the broader workforce are written to use a live Notion connection when one is available in the session. As of this build, Notion is **not connected** for this account — `ListConnectors`/`SearchMcpRegistry` show it as available in the connector directory but not installed. Until Carol connects it (via her claude.ai connector settings), filing stays instructions-only: copy-ready output instead of live writes. No code change is needed here once it's connected — Joey and Jill already check for it.
+Notion is **connected** as of this build. Joey has live Notion tools (search/fetch/query/create-pages/update-page) and files the social posts into Carol's actual content calendar after both gates pass, instead of producing copy-ready text for manual entry.
+
+## Known limitation: nested dispatch
+
+In this environment (Claude Code Remote), a subagent's own `Task` tool does not actually get granted to it at runtime, even when its `.md` frontmatter lists `Task` — confirmed independently with both Jill and Charlie, who each reported having only `Read`/`Write` available when they tried to dispatch to their own team/tools. Practical effect: Jill cannot actually delegate to Joey/Monica/etc. by calling Task herself, and Charlie cannot actually delegate to her four tools that way either.
+
+Until/unless that changes, whoever is running this skill (the top-level session invoking `/workforce`) should do the dispatching directly — call each named agent (`joey`, `journey-check`, `qa-check`, `monica`, `charlie`, `christina`, or Charlie's four tools) as its own Agent/Task call, using Jill's or Charlie's routing logic (in their `.md` files) as the plan to follow, rather than expecting Jill or Charlie to fan out on their own. This has been tested and works reliably — it's one extra layer of manual orchestration, not a blocker. In a standard local Claude Code CLI/desktop session, nested subagent dispatch is a normal supported pattern and this workaround likely isn't needed — worth re-testing there.

@@ -42,7 +42,9 @@ Jill orchestrates a team of specialists across content, operations, learning, cl
 
 From a Claude Code session in this repo, invoke the `workforce` skill (`/workforce`) with any request. It hands off to Jill, who routes to the right specialist(s) and compiles a single result — nothing publishes or sends without Carol's sign-off. You can also address any agent by name directly (e.g. "ask Christina to look into X") without going through Jill.
 
+**Known limitation (Claude Code Remote):** subagents don't actually get their own `Task` tool in this environment, even when their `.md` file lists it — confirmed with both Jill and Charlie. So true self-dispatch (Jill calling Joey, Charlie calling her four tools) doesn't fire on its own here; whoever's running the session should call each specialist directly instead, using Jill's/Charlie's routing logic as the plan. Tested, reliable, just one extra manual layer. Worth re-testing in a standard local Claude Code CLI/desktop session, where nested dispatch is normally supported.
+
 ### Integrations
 
 - **Gmail + Google Calendar**: live, connected to Monica. Read/search/draft/organize freely; anything visible to another person (creating/editing/deleting an event, responding to an invite) requires Carol's confirmation first.
-- **Notion**: not yet connected for this account. It's available in the connector directory — connect it via claude.ai's connector settings and Joey's filing step + Jill's routing will start using it automatically, no code change needed.
+- **Notion**: live, connected to Joey. He searches for the real content calendar, reads its actual schema, and files social posts into it after both gates pass — no more copy-ready fallback.
